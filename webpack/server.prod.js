@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 const res = p => path.resolve(__dirname, p)
 
-const entry = res('../server/render.js')
+const entry = res('../server/renderServer.js')
 const output = res('../buildServer')
 
 module.exports = {
@@ -42,10 +42,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css', '.styl'],
-    alias: {
-      '@pages': path.resolve(__dirname, '/src/pages')
-    }
+    extensions: ['.js', '.css', '.styl']
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),

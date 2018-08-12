@@ -6,7 +6,7 @@ module.exports = {
   name: 'client',
   target: 'web',
   devtool: 'source-map',
-  entry: [path.resolve(__dirname, '../src/index.js')],
+  entry: [path.resolve(__dirname, '../server/clientRender.js')],
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
@@ -41,10 +41,7 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.css', '.styl'],
-    alias: {
-      '@pages': path.resolve(__dirname, '/src/pages')
-    }
+    extensions: ['.js', '.css', '.styl']
   },
   plugins: [
     new ExtractCssChunks(),
