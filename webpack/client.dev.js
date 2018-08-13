@@ -50,7 +50,7 @@ module.exports = {
   plugins: [
     new WriteFilePlugin(),
     new ExtractCssChunks(),
-
+    
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({

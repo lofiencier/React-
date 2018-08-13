@@ -20,11 +20,13 @@ app.use(noFavicon())
 let isBuilt = false
 
 const done = () =>{
-  return !isBuilt &&
-  app.listen(3000, () => {
-    isBuilt = true
-    console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
-  })
+  Loadable.preloadAll().then(() => {
+    return !isBuilt &&
+    app.listen(3000, () => {
+      isBuilt = true
+      console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
+    })
+  });
 }
   
 
@@ -39,9 +41,13 @@ if (DEV) {
   app.use(webpackHotServerMiddleware(compiler))
 
   devMiddleware.waitUntilValid(done)
+  
 }
 else {
   webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
+    if(err){
+      throw err
+    }
     const clientStats = stats.toJson().children[0]
     const serverRender = require('../buildServer/main.js').default
 

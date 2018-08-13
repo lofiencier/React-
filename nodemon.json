@@ -16,7 +16,8 @@
         ".git",
         ".idea",
         "node_modules",
-        "src/"
+        "src/",
+        "react-loadable.json"
     ],
     "ext": "js jade ejs"
 }

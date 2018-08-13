@@ -1,7 +1,9 @@
-import React, {Fragments} from 'react'
+import React, {Fragments,createElement} from 'react'
 import {Route, Switch,Link} from "react-router-dom"
 import IndexPage from "./pages/Index/index"
 import NotFound from "./pages/NotFound"
+import Loadable from "react-loadable"
+import Loading from "./pages/Loading"
 
 export default class App extends React.Component {
     constructor(props) {
@@ -12,7 +14,6 @@ export default class App extends React.Component {
     }
     componentWillMount() {
         console.log("???");
-
     }
     render() {
         const {path} = this.props.history;
@@ -21,7 +22,14 @@ export default class App extends React.Component {
                 <p>Header</p>
                 <Link to="/jisihishihis">A Link That Never Exists!</Link>
                 <Switch>
-                    <Route exact path="/" component={IndexPage}/>
+                    <Route exact path="/" render={()=>createElement(
+                        Loadable({
+                            loader: () => import('./pages/Index'),
+                            modules: ['Index'],
+                            loading:Loading,
+                            webpack: () => [require.resolveWeak('./pages/Index')],
+                          })
+                    )}/>
                     <Route path="*" component={NotFound}/>
                 </Switch>
             </div>

@@ -1,6 +1,8 @@
 {
   "presets": ["es2015", "react", "stage-2"],
-  "plugins": ["universal-import"],
+  "plugins": [
+    "react-loadable/babel"
+  ],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]

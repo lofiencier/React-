@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
-
+const ReactLoadablePlugin=require('react-loadable/webpack').ReactLoadablePlugin;
 const res = p => path.resolve(__dirname, p)
 
 const nodeModules = res('../node_modules')
@@ -67,6 +67,9 @@ module.exports = {
     new WriteFilePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
+    }),
+    new ReactLoadablePlugin({
+      filename: './webpack/react-loadable.json',
     }),
     new webpack.DefinePlugin({
       'process.env': {
