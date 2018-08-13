@@ -1,7 +1,3 @@
-node_modules
-*.log
-buildClient
-buildServer
-.vscode
-.idea
-.DS_Store
+buildClient/
+buildServer/
+node_modules/

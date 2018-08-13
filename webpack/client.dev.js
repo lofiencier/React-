@@ -14,8 +14,8 @@ module.exports = {
     path.resolve(__dirname, '../server/clientRender.js')
   ],
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '../buildClient'),
     publicPath: '/static/'
   },
@@ -27,7 +27,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.styl$/,
+        test: /\.css$/,
         use: [
           ExtractCssChunks.loader,
           {

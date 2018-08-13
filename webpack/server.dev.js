@@ -43,7 +43,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.styl$/,
+        test: /\.css$/,
         exclude: /node_modules/,
         use: [
           {

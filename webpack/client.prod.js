@@ -22,7 +22,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.styl$/,
+        test: /\.css$/,
         use: [
           ExtractCssChunks.loader,
           {

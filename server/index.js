@@ -9,6 +9,7 @@ const clientConfig = require('../webpack/client.dev')
 const serverConfig = require('../webpack/server.dev')
 const clientConfigProd = require('../webpack/client.prod')
 const serverConfigProd = require('../webpack/server.prod')
+const Loadable = require("react-loadable")
 
 const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
@@ -18,12 +19,14 @@ app.use(noFavicon())
 
 let isBuilt = false
 
-const done = () =>
-  !isBuilt &&
+const done = () =>{
+  return !isBuilt &&
   app.listen(3000, () => {
     isBuilt = true
     console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
   })
+}
+  
 
 if (DEV) {
   const compiler = webpack([clientConfig, serverConfig])

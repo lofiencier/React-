@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { createStore, combineReducers } from 'redux'
 
@@ -28,10 +28,7 @@ const clientRender = App => {
 }
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('../src/components/App.js', () => {
-        const App = require('../src/components/App').default 
-        clientRender(App)
-    })
+    module.hot.accept()
 }
 
 clientRender(App)
