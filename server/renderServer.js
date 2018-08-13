@@ -1,7 +1,6 @@
 import React, {Fragments} from 'react'
 import ReactDOM from 'react-dom/server'
 import createHistory from 'history/createMemoryHistory'
-import {flushChunkNames} from 'react-universal-component/server'
 import Layout from "./Layout"
 
 import {StaticRouter as Router, Link} from "react-router-dom"
@@ -9,11 +8,10 @@ import {Provider} from "react-redux"
 import {createStore, combineReducers} from 'redux'
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux'
 import App from '../src/components/App'
-import flushChunks from 'webpack-flush-chunks'
 import fs from "fs"
 
 import Loadable from "react-loadable"
-import stats from "../webpack/react-loadable.json"
+import stats from "../dist/react-loadable.json"
 import {getBundles} from "react-loadable/webpack"
 
 // const wl = fs.createWriteStream("./clientStats")
@@ -46,7 +44,7 @@ export default({clientStats}) => (req, res) => {
         </Router>
       </Provider>
     </Layout>
-  ))
+  ));
   // console.log('CONTEXT', context)
   console.log(`MODULES:${modules}`.red);
 }

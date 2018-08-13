@@ -1,9 +1,6 @@
-import React, {Fragments,createElement} from 'react'
-import {Route, Switch,Link} from "react-router-dom"
-import IndexPage from "./pages/Index/index"
-import NotFound from "./pages/NotFound"
-import Loadable from "react-loadable"
-import Loading from "./pages/Loading"
+import React, { Fragments, createElement } from 'react'
+import { Route, Switch, Link } from "react-router-dom"
+import routeConfigs from "../../routes/routeConfigs"
 
 export default class App extends React.Component {
     constructor(props) {
@@ -16,21 +13,15 @@ export default class App extends React.Component {
         console.log("???");
     }
     render() {
-        const {path} = this.props.history;
+        const { path } = this.props.history;
         return (
             <div>
                 <p>Header</p>
                 <Link to="/jisihishihis">A Link That Never Exists!</Link>
                 <Switch>
-                    <Route exact path="/" render={()=>createElement(
-                        Loadable({
-                            loader: () => import('./pages/Index'),
-                            modules: ['Index'],
-                            loading:Loading,
-                            webpack: () => [require.resolveWeak('./pages/Index')],
-                          })
-                    )}/>
-                    <Route path="*" component={NotFound}/>
+                    {
+                        routeConfigs.map(route => <Route key={route.path} path={route.path} exact={route.exact} component={route.component} thunk={route.thunk} />)
+                    }
                 </Switch>
             </div>
         )

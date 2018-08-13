@@ -12,8 +12,6 @@ import React from 'react'
     {/* <div data-name="stylesheets" dangerouslySetInnerHTML={{__html:props.stylesheets.toString()}}></div> */}
   </head>
   <body><div id="root">{props.children}</div></body>                                                                                                                                                                                                                                                                                                                                     
-  {bundles.length}
-  {bundles}
   {/* {
     bundles.map(bundle=>{
       return `<script src="static/${bundle.file}"></script>`
