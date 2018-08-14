@@ -3,7 +3,7 @@
   "scripts": {
     "watch": "npm run clean && cross-env NODE_ENV=production nodemon server/index.js",
     "start:prod": "npm run clean && cross-env NODE_ENV=production node server/index.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist/buildClient dist/buildServer",
     "cm": "git-cz"
   },
   "dependencies": {

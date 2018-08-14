@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin') // here so you can see what chunks are built
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const ReactLoadablePlugin=require('react-loadable/webpack').ReactLoadablePlugin;
 
 module.exports = {
   name: 'client',
@@ -18,6 +19,10 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '../dist/buildClient'),
     publicPath: '/static/'
+  },
+  watch:true,
+  watchOptions:{
+    ignored: ['dist/**/*.json', 'node_modules']
   },
   module: {
     rules: [
@@ -48,11 +53,15 @@ module.exports = {
     extensions: ['.js', '.css', '.styl']
   },
   plugins: [
+    new ReactLoadablePlugin({
+      filename:path.resolve(__dirname,'../dist/react-loadable.json'),
+    }),
     new WriteFilePlugin(),
     new ExtractCssChunks(),
     
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')

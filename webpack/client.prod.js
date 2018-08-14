@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const ReactLoadablePlugin=require('react-loadable/webpack').ReactLoadablePlugin;
 
 module.exports = {
   name: 'client',
@@ -10,7 +11,7 @@ module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, '../buildClient'),
+    path: path.resolve(__dirname, '../dist/buildClient'),
     publicPath: '/static/'
   },
   stats: 'verbose',
@@ -44,6 +45,9 @@ module.exports = {
     extensions: ['.js', '.css', '.styl']
   },
   plugins: [
+    new ReactLoadablePlugin({
+      filename:path.resolve(__dirname,'../dist/react-loadable.json'),
+    }),
     new ExtractCssChunks(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),

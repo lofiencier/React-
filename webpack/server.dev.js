@@ -69,9 +69,9 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new ReactLoadablePlugin({
-      filename: res('../dist/react-loadable.json'),
-    }),
+    // new ReactLoadablePlugin({
+    //   filename: res('../dist/react-loadable.json'),
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')

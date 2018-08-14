@@ -7,10 +7,12 @@ const Loading=(props)=>{
 
 const Index = Loadable({
   loader: () =>import(/* webpackChunkName: 'Index' */'../src/components/pages/Index'),
+  delay:0,
   loading: Loading,
 });
-const LoadableUser = Loadable({
+const NotFound = Loadable({
   loader: () =>import(/* webpackChunkName: 'NotFound' */'../src/components/pages/NotFound'),
+  delay:0,
   loading: Loading,
 });
 
@@ -20,8 +22,8 @@ const routesConfig=[{
   component: Index,
   thunk:()=>{}
 }, {
-  path: '/user',
-  component: LoadableUser,
+  path: '/404',
+  component: NotFound,
   thunk: ()=>{}
 }];
 

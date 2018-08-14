@@ -10,6 +10,7 @@ const serverConfig = require('../webpack/server.dev')
 const clientConfigProd = require('../webpack/client.prod')
 const serverConfigProd = require('../webpack/server.prod')
 const Loadable = require("react-loadable")
+const path = require('path')
 
 const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
@@ -28,9 +29,11 @@ const done = () =>{
     })
   });
 }
-  
 
 if (DEV) {
+  //拆分此处的两个compiler
+  //先编译client再编译server,也许就不会编译两次
+
   const compiler = webpack([clientConfig, serverConfig])
   const clientCompiler = compiler.compilers[0]
   const options = { publicPath, stats: { colors: true } }
@@ -49,7 +52,7 @@ else {
       throw err
     }
     const clientStats = stats.toJson().children[0]
-    const serverRender = require('../buildServer/main.js').default
+    const serverRender = require('../dist/buildServer/main.js').default
 
     app.use(publicPath, express.static(outputPath))
     app.use(serverRender({ clientStats }))
@@ -57,3 +60,6 @@ else {
     done()
   })
 }
+
+
+
